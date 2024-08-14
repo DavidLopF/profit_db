@@ -498,3 +498,43 @@ SELECT
     END AS CP_ID
 FROM 
     financial_discounts fd
+
+
+
+-- profit_2.financial_discounts_view source
+
+CREATE OR REPLACE
+ALGORITHM = UNDEFINED VIEW `financial_discounts_view` AS
+select
+    `fd`.`ID` AS `ID`,
+    `fd`.`SUCURSAL_ID` AS `SUCURSAL_ID`,
+    `fd`.`LINE_ID` AS `LINE_ID`,
+    `fd`.`SUB_LINE_ID` AS `SUB_LINE_ID`,
+    `fd`.`PROJECT_ID` AS `PROJECT_ID`,
+    `fd`.`DEPENDECY_SUCURSAL` AS `DEPENDECY_SUCURSAL`,
+    `fd`.`INITIAL_VALUE` AS `INITIAL_VALUE`,
+    `fd`.`CURRENT_VALUE` AS `CURRENT_VALUE`,
+    `fd`.`EXPIRATION_DATE` AS `EXPIRATION_DATE`,
+    `fd`.`COMMENTS` AS `COMMENTS`,
+    `fd`.`FILES` AS `FILES`,
+    `fd`.`CREATE_AT` AS `CREATE_AT`,
+    `fd`.`UPDATE_AT` AS `UPDATE_AT`,
+    `fd`.`DELETE_AT` AS `DELETE_AT`,
+    `fd`.`STATUS_ID` AS `STATUS_ID`,
+    `fd`.`DOCUMENT_TYPE_ID` AS `DOCUMENT_TYPE_ID`,
+    `fd`.`CLIENT_ID` AS `CLIENT_ID`,
+    `fd`.`PERCENTAGE` AS `PERCENTAGE`,
+    `fd`.`IS_DISCOUNT` AS `IS_DISCOUNT`,
+    `fd`.`DATE_OF_ISSUE` AS `DATE_OF_ISSUE`,
+    `fd`.`ERP_ID` AS `ERP_ID`,
+    `fd`.`MOTIVE_ID` AS `MOTIVE_ID`,
+    `fd`.`VALIDITY_RANGE` AS `VALIDITY_RANGE`,
+    `fd`.`EARLYPAY_DATE` AS `EARLYPAY_DATE`,
+    `fd`.`IS_LEGALIZED` AS `IS_LEGALIZED`,
+    `fd`.`IS_DELETED` AS `IS_DELETED`,
+    (case
+        when (`fd`.`ERP_ID` is null) then concat('CP-', row_number() OVER (PARTITION BY `fd`.`PROJECT_ID` ORDER BY `fd`.`ID` ) )
+        else NULL
+    end) AS `CP_ID`
+from
+    `financial_discounts` `fd`;
