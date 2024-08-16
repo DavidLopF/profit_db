@@ -1154,6 +1154,7 @@ CREATE TABLE `dynamic_links` (
 
 
 -- profit_2.financial_discounts definition
+
 CREATE TABLE `financial_discounts` (
   `ID` int NOT NULL AUTO_INCREMENT,
   `SUCURSAL_ID` int DEFAULT NULL,
@@ -1197,7 +1198,7 @@ CREATE TABLE `financial_discounts` (
   CONSTRAINT `financial_discounts_ibfk_6` FOREIGN KEY (`DOCUMENT_TYPE_ID`) REFERENCES `financial_discounts_document_types` (`ID`),
   CONSTRAINT `financial_discounts_ibfk_7` FOREIGN KEY (`CLIENT_ID`) REFERENCES `client` (`NIT`),
   CONSTRAINT `financial_discounts_ibfk_8` FOREIGN KEY (`MOTIVE_ID`) REFERENCES `financial_discount_motive` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=26578 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=26598 DEFAULT CHARSET=utf8mb3;
 -- profit_2.financial_records definition
 
 CREATE TABLE `financial_records` (
@@ -1510,7 +1511,7 @@ CREATE TABLE `financial_discount_event` (
   KEY `INVOICE_EVENT_TYPE` (`INVOICE_EVENT_TYPE`),
   CONSTRAINT `financial_discount_event_ibfk_2` FOREIGN KEY (`USER_ID`) REFERENCES `user` (`ID`),
   CONSTRAINT `financial_discount_event_ibfk_3` FOREIGN KEY (`INVOICE_EVENT_TYPE`) REFERENCES `financial_discount_event_type` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3935 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3990 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- profit_2.incident_timeline definition
 
